@@ -1,0 +1,13 @@
+4.log_cutting：
+日志切割，有这样一个access.log每天会打出大量的日志。实现一个日志切割的功能，并说明该实现方式会有什么缺陷。
+
+可以按照日志的大小进行分割
+#!-*-coding-*-
+import subprocess
+import time
+while True:
+  subprocess.call('split - b 100k *.log bak')
+  #设定时间为一天
+  time.sleep(86400)
+  
+缺陷：可能导致日志分割的不规范性。
