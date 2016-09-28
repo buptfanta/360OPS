@@ -1,0 +1,19 @@
+2.ifconfig_reg:
+解析ifconfig命令的标准输出，返回一个hash。key是网卡名称 value是对应的ip。
+
+答：
+可以先安装psutil
+wget http://https://pypi.python.org/pypi?:action=show_md5&digest=199a366dba829c88bddaf5b41d19ddc0
+tar -xzvf psutil-4.3.1.tar.gz
+cd psutil-4.3.1
+python setup.py install
+
+#!-*-coding:utf8-*-
+import psutil
+L=[]
+ipdic=psutil.net_if_addrs()
+for key,value in ipdic.items():
+    for item in value:
+        if item[0]==2 and not item[1]=='127.0.0.1':
+               L.append(k,item[1])
+return L
