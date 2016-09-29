@@ -5,7 +5,20 @@
 安装psutil
 #!-*-coding:utf8-*-
 import psutil
-while True:
-  a=psutil.cpu_times()
-  f=open('/usr/record/cpuinformation/sysinfo_recorder.txt','w+')
-  for 
+a=str(psutil.cpu_times())
+a=a[10:-1]
+paras=[]
+values=[]
+for i in a:
+    x=i.split('=')
+    paras.append(x[0])
+    values.append(x[1])
+f=open('/usr/record/cpuinformation/sysinfo_recorder.log','w+')
+f.writelines(paras)
+while values:
+    f=open('/usr/record/cpuinformation/sysinfo_recorder.log','a+')
+    f.writelines(values)
+ 
+在/etc/logrotate中配置文件目录，
+并设置rotate 5
+      size=10M
